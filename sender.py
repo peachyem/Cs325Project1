@@ -19,12 +19,12 @@ for line in read:
 
 #respond to all
 for prompt in modified:
-   responseO = ollama.generate(model="phi3", prompt=modified[count])
-   #specifically only get the response and put each one on a newline
-   responseClean = responseO["response"] + '\n'
-   #print(responseClean)
-   #write to response file
-   responsefile.write(responseClean)
-   count +=1
+    responseO = ollama.generate(model="phi3", prompt=modified[count])
+    #specifically only get the response and put each one on a newline
+    responseClean = responseO["response"] + '\n'
+    #print(responseClean)
+    #write to response file
+    responsefile.write(responseClean)
+    count +=1
 #close the file
 responsefile.close()
