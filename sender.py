@@ -1,3 +1,5 @@
+#this file takes input from a file, communicates with phi3 through ollama and then puts the responses in a seperate file
+#Emmorie Brown
 import ollama
 
 #open and read from prompt file
@@ -20,7 +22,7 @@ for prompt in modified:
    responseO = ollama.generate(model="phi3", prompt=modified[count])
    #specifically only get the response and put each one on a newline
    responseClean = responseO["response"] + '\n'
-   print(responseClean)
+   #print(responseClean)
    #write to response file
    responsefile.write(responseClean)
    count +=1
