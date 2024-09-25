@@ -1,11 +1,9 @@
 This repository was created to keep track of my CS325, Operating Systems, Project 1. This is the first project in a series that we will build off of to create a web scrapper.
 
 Purpose
-
 	The purpose of this project is to create a program in python that prompts a small language model, phi-3, running on my local machine and prompt it with a query. In order to prompt phi-3, the program must be able to read from and file and then pass that data to the running model. Then, I am to store the responses from phi-3 in a separate file. 	
 
 Recreation
-
 	In order to recreate the environment that I used for this project; you will need to do the following steps. **Disclaimer: These instructions are for a Windows machine, for Mac or Linux the steps may be different.
 1.	Go to https://ollama.com/ and download the latest version of Ollama.
 2.	Once Ollama is downloaded, type ollama run phi3:mini and hit enter
