@@ -6,7 +6,7 @@ Purpose:
 
 Recreation:
 
-	- In order to recreate the environment that I used for this project; you will need to do the following steps. **Disclaimer: These instructions are for a Windows machine, for Mac or Linux the steps may be different.
+    -   In order to recreate the environment that I used for this project; you will need to do the following steps. **Disclaimer: These instructions are for a Windows machine, for Mac or Linux the steps may be different.
 1.	Go to https://ollama.com/ and download the latest version of Ollama.
 2.	Once Ollama is downloaded, type ollama run phi3:mini and hit enter
 -	This downloads an instance of phi3 mini, the smallest version of phi3 on your local machine to use
