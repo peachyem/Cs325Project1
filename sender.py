@@ -1,5 +1,5 @@
 #this file takes input from a file, communicates with phi3 through ollama and then puts the responses in a seperate file
-#Emmorie Brown
+
 import ollama
 
 #open and read from prompt file
