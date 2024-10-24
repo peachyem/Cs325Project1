@@ -2,42 +2,33 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import time
+import re
 
-#saving the data and opening the file we will write to
-data = []
-current_page = 1
-reviewfile = open('reviews1.txt', 'w')
-#loop condition
-proceed = True
+currentpage = 1
+#test to see if it is being scrapped
+#print("Currently Scraping page: "+str(current_page))
+#url for a website
+url = "https://www.bestbuy.com/site/reviews/apple-macbook-air-13-inch-laptop-m3-chip-built-for-apple-intelligence-8gb-memory-256gb-ssd-midnight/6565837?variant=A&page="+str(currentpage)
 
-while(proceed):
-    #test to see if it is being scrapped
-    print("Currently Scraping page: "+str(current_page))
-    #url for a website
-    url = "https://store.steampowered.com/app/504230/Celeste/"
-
-    #where we are pulling the page cite html
-    page = requests.get(url)
+def get_reviews(url):
+    headers = {'User-Agent' : 'Mozilla/5.0'}
+    r = requests.get(url, headers=headers, timeout=10)   #sends request to pull the url
+    r.raise_for_status()
+    return r
 
 
-    soup = BeautifulSoup(page.text, "html.parser")
+def parse(data):
+    soup = BeautifulSoup(data.text, 'html.parser')   #calls Beautiful Soup to parse the data
+    all_reviews = soup.find_all(class_="pre-white-space")
+    return all_reviews
 
-    #printing to see if we are actually connecting
-    print(page.text)
-    if current_page == 50:
-        proceed = False
-    else:
-        #finds the section of html that each review is encased in
-        all_reviews = soup.find_all("div",class_="review_box    partial")
+def write_to_file(all_reviews):
+    with open('reviews1.txt', 'w+', encoding='utf-8') as reviewsfile:
+        for reviews in all_reviews:
+            reviewsfile.write(reviews.get_text(strip=True) + '\n')
+    return
 
-        for review in all_reviews:
-            item = {}
-            #pulls the review by checking if the type and class match
-            item['Review'] = review.find("div",class_="content")
-            string = " ".join(item['Review'])
-            #data.append(item)
-            reviewfile.write(string)
-
-    #increments the page number
-    current_page += 1
-    proceed = False
+data = get_reviews(url)
+review = parse(data)
+write_to_file(review)
