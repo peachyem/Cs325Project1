@@ -6,6 +6,9 @@ This branch was created to keep track of my CS325, Operating Systems, Project 2.
 
 # Recreation:
 
-   - In order to recreate the environment that I used for this project; you will need to do the following steps. **Disclaimer: These instructions are for a Windows machine, for Mac or Linux the steps may be different.
+   - In order to recreate the environment that I used for this project; you will need to do the following steps. 
+   ### **Disclaimer: ** These instructions are for a Windows machine, for Mac or Linux the steps may be different.
 
-  
+## Steps:
+   1. Next you will need to install [conda](https://docs.anaconda.com/miniconda/miniconda-install/) on your local machine 
+      - I have provided a link for anaconda, and you will follow the instructions on their to install it based on your machine specifications
