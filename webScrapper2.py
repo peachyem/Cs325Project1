@@ -10,17 +10,11 @@ totalpage = 1
 #test to see if it is being scrapped
 #print("Currently Scraping page: "+str(current_page))
 #url for a website
-ipad6 = 'ipad6.txt'
-ipad7 = 'ipad7.txt'
-ipad8 = 'ipad8.txt'
-ipad9 = 'ipad9.txt'
-ipad10 = 'ipad10.txt'
-
-url6 = "https://www.bestbuy.com/site/reviews/apple-certified-refurbished-ipad-6th-generation-2018-wi-fi-32gb-silver/6434298?variant=A&page="
-url7 = "https://www.bestbuy.com/site/reviews/apple-geek-squad-certified-refurbished-10-2-inch-ipad-7th-generation-with-wi-fi-32gb-gold/6482000?variant=A&page="
-url8 = "https://www.bestbuy.com/site/reviews/apple-geek-squad-certified-refurbished-10-2-inch-ipad-8th-generation-with-wi-fi-32gb-gold/6482863?variant=A&page="
-url9 = "https://www.bestbuy.com/site/reviews/apple-10-2-inch-ipad-9th-generation-with-wi-fi-64gb-space-gray/4901809?variant=A&page="
-url10 = "https://www.bestbuy.com/site/reviews/apple-10-9-inch-ipad-latest-model-10th-generation-with-wi-fi-64gb-yellow/5200906?variant=A&page="
+#ipad6 = 'ipad6.txt'
+#ipad7 = 'ipad7.txt'
+#ipad8 = 'ipad8.txt'
+#ipad9 = 'ipad9.txt'
+#ipad10 = 'ipad10.txt'
 
 def get_reviews(url, page):
     headers = {'User-Agent' : 'Mozilla/5.0'}
@@ -41,18 +35,25 @@ def write_to_file(all_reviews, filename):
             reviewsfile.write(reviews.get_text(strip=True) + '\n')
     return
 
-def main(url, currentpage, filename):
+def main(currentpage):
     page = 1
-    while(currentpage < 7):
-        data = get_reviews(url, page)
-        review = parse(data)
-        write_to_file(review, filename)
-        currentpage += 1
-        page +=1
-        print("scrapping!")
+    with open('urls.txt', 'r') as file:
+        urls = file.readlines()
+    print(urls)    
+    count = 6
+    for url in urls:
+        url.strip()
+        while(page < 7):
+            print(url)
+            data = get_reviews(url, page)
+            review = parse(data)
+            filename = 'ipad'+str(count)+'.txt'
+            print(filename)
+            write_to_file(review, filename)
+            currentpage += 1
+            page +=1
+            print("scrapping!")
+        page = 1
+        count +=1
 
-main(url6, currentpage, ipad6)
-main(url7, currentpage, ipad7)
-main(url8, currentpage, ipad8)
-main(url9, currentpage, ipad9)
-main(url10, currentpage, ipad10)
+main(currentpage)
