@@ -18,7 +18,7 @@ This branch was created to keep track of my CS325, Operating Systems, Project 2.
    ```
       git clone https://github.com/peachyem/Cs325Project1.git
    ```
-   
+
    - This will clone the repository to your local machine
    5. Nagivate to the webScrapping Branch inside VSCode
    ```
@@ -29,12 +29,12 @@ This branch was created to keep track of my CS325, Operating Systems, Project 2.
    ```
       --name my_yaml_env --file requirement.yaml
    ```
-      - my_yaml_env can be named anythin you prefer for your environment
-      - this installs all specific packages tha I used for this project
+   - my_yaml_env can be named anythin you prefer for your environment
+   - this installs all specific packages tha I used for this project
    8. Finally, enter your newly created environment!
    ```
       conda activate my_yaml_env
    ```
-      - This may pop up an error that says you must first run conda init, so type conda init and then retry
-      - If it still does not work, try switching what terminal you are using, command prompt seemed to reliably work for me
+   - This may pop up an error that says you must first run conda init, so type conda init and then retry
+   - If it still does not work, try switching what terminal you are using, command prompt seemed to reliably work for me
    9. Finally, you will click into webScrapping2.py and hit run. You should then see all reviews in each text response file
