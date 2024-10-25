@@ -1,59 +1,44 @@
-#importing libraries
+#importing all required libraries
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
-import time
-import re
-
-currentpage = 1
-totalpage = 1
-#test to see if it is being scrapped
-#print("Currently Scraping page: "+str(current_page))
-#url for a website
-#ipad6 = 'ipad6.txt'
-#ipad7 = 'ipad7.txt'
-#ipad8 = 'ipad8.txt'
-#ipad9 = 'ipad9.txt'
-#ipad10 = 'ipad10.txt'
 
 def get_reviews(url, page):
-    headers = {'User-Agent' : 'Mozilla/5.0'}
-    url +=str(page)
-    r = requests.get(url, headers=headers, timeout=10)   #sends request to pull the url
-    r.raise_for_status()
-    #url = url[:-1]
+    headers = {'User-Agent' : 'Mozilla/5.0'}                #Helps pass information to a website more easily
+    url +=str(page)                                         #adds the page number to the url
+    r = requests.get(url, headers=headers, timeout=10)      #sends request to pull the url
+    r.raise_for_status()                                    #raises an error if something does not pull properly
     return r
 
-def parse(data):
-    soup = BeautifulSoup(data.text, 'html.parser')   #calls Beautiful Soup to parse the data
+#this function calls Beautiful Soup to parse the data from the url passed in
+#then finds all reviews in the pre-white-space class, which is the html where the reviews are stored
+def parse(data): 
+    soup = BeautifulSoup(data.text, 'html.parser')   
     all_reviews = soup.find_all(class_="pre-white-space")
     return all_reviews
 
-def write_to_file(all_reviews, filename):
+#this function opens the file passed into it and then appends the current review to the file and then goes to a new line
+def write_to_file(all_reviews, filename):                               
     with open(filename, 'a', encoding='utf-8') as reviewsfile:
         for reviews in all_reviews:
-            reviewsfile.write(reviews.get_text(strip=True) + '\n')
+            reviewsfile.write(reviews.get_text(strip=True) + '\n')      
     return
 
-def main(currentpage):
-    page = 1
-    with open('urls.txt', 'r') as file:
-        urls = file.readlines()
-    print(urls)    
-    count = 6
-    for url in urls:
-        url.strip()
-        while(page < 7):
-            print(url)
-            data = get_reviews(url, page)
-            review = parse(data)
-            filename = 'ipad'+str(count)+'.txt'
-            print(filename)
-            write_to_file(review, filename)
-            currentpage += 1
-            page +=1
-            print("scrapping!")
-        page = 1
-        count +=1
+def main():
+    page = 1                                            #a way to move to next url
+    with open('urls.txt', 'r') as file:                 #opens url file
+        urls = file.readlines()                         #saves every url to a list
 
-main(currentpage)
+    count = 6                                           #count starts at 6 because we start at the 6th gen ipad
+    for url in urls:                                    #increments for all urls
+        url.strip()                                     #removes white space from url
+        while(page < 7):                                #chose 7 because it will pull around 140 reviews
+            data = get_reviews(url, page)               #calls the get_reviews function and saves it to a variable
+            review = parse(data)                        #calls the parse function and saves it to a variable
+            filename = 'ipad'+str(count)+'.txt'         #saves the current file to output reviews to
+            write_to_file(review, filename)
+            page +=1                                    #incrementing page to get more reviews
+
+        page = 1                                        #resetting page counter
+        count +=1                                       #incrementing count to move to next text file
+
+main()                                                  #calling main function
