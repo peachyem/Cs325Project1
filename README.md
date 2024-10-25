@@ -17,7 +17,7 @@ This branch was created to keep track of my CS325, Operating Systems, Project 2.
    4. Next, you will paste: 
    ```
       git clone https://github.com/peachyem/Cs325Project1.git
-   ```
+
       - This will clone the repository to your local machine
    5. Nagivate to the webScrapping Branch inside VSCode
    ```
