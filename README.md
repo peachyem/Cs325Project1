@@ -4,7 +4,7 @@ This branch was created to keep track of my CS325, Operating Systems, Final Proj
 
    The purpose of this project is to create a program in python that reads urls from a file, pulls the reviews from the cite and then writes them to their own seperate files. The reviews were then sent off to a small language model, phi-3, which was running on my local machine through ollama, and then prompt it. Phi-3 then returned the responses. The responses where then used to create a graph of the positve, negative and nuetral reviews.
 
-#Graph
+# Graph:
 ![Image of the clustered column graph](FinalProjectGraph.png)
 
 # Recreation:
